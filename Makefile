@@ -8,7 +8,8 @@ SRC =	src/main.c \
 			src/global_utils.c \
 			src/parse_map.c \
 			src/validate_map.c \
-			src/validate_map2.c
+			src/validate_map2.c \
+			src/validate_utils.c
 OBJ =	$(SRC:.c=.o)
 
 # COMMANDS #

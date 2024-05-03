@@ -48,16 +48,6 @@ static bool	check_for_exit(t_map *map)
 	return (true);
 }
 
-static int	len_no_newline(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\n' && s[len] != '\0')
-		len++;
-	return (len);
-}
-
 static bool	is_rectangular(t_map *map)
 {
 	t_map	*cur;
@@ -84,4 +74,6 @@ void	validate_map(t_map *map)
 		error("Map is not rectangular.");
 	if (!check_for_chars(map))
 		error("Map contains invalid characters.");
+	if (!is_closed(map))
+		error("Map is not closed.");
 }

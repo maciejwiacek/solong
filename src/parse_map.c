@@ -10,6 +10,8 @@ void	parse_map(char *map_path, t_map **map)
 	if (fd < 0)
 		error("Wrong map path");
 	str = get_next_line(fd);
+	if (!str)
+		error("Map file is empty.");
 	while (str)
 	{
 		new = ft_lstnew(str);

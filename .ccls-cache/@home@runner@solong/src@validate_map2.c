@@ -20,9 +20,33 @@ bool	check_for_chars(t_map *map)
 	return true;
 }
 
+static bool	has_other_char(char *s, char c)
+{
+	while (*s && *s != '\n')
+	{
+		if (*s != c)
+			return (true);
+		s++;
+	}
+	return (false);
+}
+
 bool	is_closed(t_map *map)
 {
 	t_map	*cur;
+	size_t	len;
 
-	cur = map; 
+	cur = map;
+	len = len_no_newline(cur->content);
+	if (has_other_char(cur->content, '1'))
+		return (false);
+	while (cur)
+	{
+		if ((cur->content)[0] != '1' || (cur->content)[len - 1] != '1')
+			return (false);
+		cur = cur->next;
+	}
+	if (has_other_char(cur->content, '1'))
+		return (false);
+	return (true);
 }

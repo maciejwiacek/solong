@@ -19,5 +19,7 @@ void    error(char *msg);
 void	parse_map(char *map_path, t_map **map);
 void	validate_map(t_map *map);
 bool	check_for_chars(t_map *map);
+int		len_no_newline(char *s);
+bool	is_closed(t_map *map);
 
 #endif
