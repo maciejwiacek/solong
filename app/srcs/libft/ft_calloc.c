@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:13:37 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/04/12 09:41:27 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:29:55 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	b;
 
 	b = nmemb * size;
-	if (size && ((b/size) != nmemb))
+	if (size && ((b / size) != nmemb))
 		return (NULL);
 	ptr = malloc(b);
 	if (!ptr)

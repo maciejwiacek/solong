@@ -6,13 +6,13 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:50:03 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/04/12 09:42:25 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:29:38 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-int malloc_handler(char **result, int pos, int buffer)
+int	malloc_handler(char **result, int pos, int buffer)
 {
 	int	i;
 
@@ -28,10 +28,10 @@ int malloc_handler(char **result, int pos, int buffer)
 	return (0);
 }
 
-int copy_words(char **result, char const *s, char c)
+int	copy_words(char **result, char const *s, char c)
 {
 	size_t	len;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (*s)
