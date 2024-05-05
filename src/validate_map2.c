@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/04 10:32:49 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:36:38 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static char	**duplicate_map(char **map)
 	i = 0;
 	while (map[i])
 		i++;
-	res = malloc((i + 1)* sizeof(char *));
+	res = malloc((i + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
 	res[i + 1] = NULL;
@@ -98,20 +98,18 @@ bool	is_finishable(char **map)
 {
 	char	**map_cpy;
 	int		p_coords[2];
-	size_t	width;
 	size_t	height;
 	bool	is_finishable;
 
 	height = 0;
 	while (map[height])
 		height++;
-	width = len_no_newline(map[0]);
 	map_cpy = duplicate_map(map);
 	if (!map_cpy)
 		error("Allocation failed.");
 	is_finishable = true;
 	find_coords(map_cpy, 'P', p_coords);
-	flood_fill(map_cpy, height, width, p_coords[1], p_coords[0]);
+	flood_fill(map_cpy, height, p_coords[1], p_coords[0]);
 	if (!is_all_collected(map_cpy))
 		is_finishable = false;
 	while (height-- < 0)
