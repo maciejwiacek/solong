@@ -12,71 +12,73 @@
 
 #include "../includes/so_long.h"
 
-static bool	check_for_start(t_map *map)
+static bool	check_for_start(char **map)
 {
-	t_map	*cur;
 	size_t	i;
+	size_t	j;
 	size_t	starts;
 
-	cur = map;
+	i = 0;
+	j = 0;
 	starts = 0;
-	while (cur)
+	while (map[i])
 	{
-		i = 0;
-		while (cur->content[i])
+		j = 0;
+		while (map[i][j])
 		{
-			if (cur->content[i] == 'P')
+			if (map[i][j] == 'P')
 				starts++;
-			i++;
+			j++;
 		}
-		cur = cur->next;
+		i++;
 	}
 	if (starts != 1)
 		return (false);
 	return (true);
 }
 
-static bool	check_for_exit(t_map *map)
+static bool	check_for_exit(char **map)
 {
-	t_map	*cur;
 	size_t	i;
+	size_t	j;
 	size_t	exits;
 
-	cur = map;
+	i = 0;
+	j = 0;
 	exits = 0;
-	while (cur)
+	while (map[i])
 	{
-		i = 0;
-		while (cur->content[i])
+		j = 0;
+		while (map[i][j])
 		{
-			if (cur->content[i] == 'E')
+			if (map[i][j] == 'E')
 				exits++;
-			i++;
+			j++;
 		}
-		cur = cur->next;
+		i++;
 	}
 	if (exits != 1)
 		return (false);
 	return (true);
 }
 
-static bool	is_rectangular(t_map *map)
+static bool	is_rectangular(char **map)
 {
-	t_map	*cur;
 	size_t	len;
+	size_t	i;
 
-	cur = map;
-	len = len_no_newline(cur->content);
-	while (cur)
+	i = 0;
+	len = len_no_newline(map[i]);
+	while (map[i])
 	{
-		if (len_no_newline(cur->content) != len)
+		if (len_no_newline(map[i]) != len)
 			return (false);
-		cur = cur->next;
+		i++;
 	}
 	return (true);
 }
 
-void	validate_map(t_map *map)
+void	validate_map(char **map)
 {
 	if (!check_for_exit(map))
 		error("Wrong number of exits.");
@@ -88,4 +90,6 @@ void	validate_map(t_map *map)
 		error("Map contains invalid characters.");
 	if (!is_closed(map))
 		error("Map is not closed.");
+	if (!is_finishable(map))
+		error("Map is not finishable.");
 }

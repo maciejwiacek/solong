@@ -25,6 +25,7 @@ char **parse_map(char *map_path) {
   line = get_next_line(fd);
   if (!line)
     error("Map file is empty.");
+  str = NULL;
   while (line) {
     if (!str)
       str = ft_strdup("");

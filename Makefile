@@ -3,8 +3,6 @@ NAME =	so_long
 
 # FILES #
 SRC =	src/main.c \
-			src/ft_lstnew.c \
-			src/ft_lstadd_back.c \
 			src/global_utils.c \
 			src/parse_map.c \
 			src/validate_map.c \

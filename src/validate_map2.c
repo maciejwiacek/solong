@@ -12,24 +12,25 @@
 
 #include "../includes/so_long.h"
 
-bool	check_for_chars(t_map *map)
+bool	check_for_chars(char **map)
 {
-	t_map	*cur;
 	size_t	i;
+	size_t	j;
 
-	cur = map;
-	while (cur)
+	i = 0;
+	j = 0;
+	while (map[i])
 	{
-		i = 0;
-		while ((cur->content)[i] && (cur->content)[i] != '\n')
+		j = 0;
+		while ((map)[i][j] && map[i][j] != '\n')
 		{
-			if ((cur->content)[i] != 'P' && (cur->content)[i] != 'E'
-				&& (cur->content)[i] != 'C' && (cur->content)[i] != '1'
-				&& (cur->content)[i] != '0')
+			if (map[i][j] != 'P' && map[i][j] != 'E'
+				&& map[i][j] != 'C' && map[i][j] != '1'
+				&& map[i][j] != '0')
 				return (false);
-			i++;
+			j++;
 		}
-		cur = cur->next;
+		i++;
 	}
 	return (true);
 }
@@ -45,22 +46,78 @@ static bool	has_other_char(char *s, char c)
 	return (false);
 }
 
-bool	is_closed(t_map *map)
+bool	is_closed(char **map)
 {
-	t_map	*cur;
+	size_t	i;
 	size_t	len;
 
-	cur = map;
-	len = len_no_newline(cur->content);
-	if (has_other_char(cur->content, '1'))
+	i = 0;
+	len = len_no_newline(map[i]);
+	if (has_other_char(map[i], '1'))
 		return (false);
-	while (cur->next)
+	while (map[i])
 	{
-		if ((cur->content)[0] != '1' || (cur->content)[len - 1] != '1')
+		if (map[i][0] != '1' || map[i][len - 1] != '1')
 			return (false);
-		cur = cur->next;
+		i++;
 	}
-	if (has_other_char(cur->content, '1'))
+	if (has_other_char(map[i - 1], '1'))
 		return (false);
 	return (true);
+}
+
+static char	**duplicate_map(char **map)
+{
+	char	**res;
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	res = malloc((i + 1)* sizeof(char *));
+	if (!res)
+		return (NULL);
+	res[i + 1] = NULL;
+	i = 0;
+	while (map[i])
+	{
+		res[i] = ft_strdup(map[i]);
+		if (!res[i])
+		{
+			while (i--)
+				free(res[i]);
+			free (res);
+			return (NULL);
+		}
+		i++;
+	}
+	return (res);
+}
+
+bool	is_finishable(char **map)
+{
+	char	**map_cpy;
+	int		p_coords[2];
+	size_t	width;
+	size_t	height;
+	bool	is_finishable;
+
+	height = 0;
+	while (map[height])
+		height++;
+	width = len_no_newline(map[0]);
+	map_cpy = duplicate_map(map);
+	if (!map_cpy)
+		error("Allocation failed.");
+	is_finishable = true;
+	find_coords(map_cpy, 'P', p_coords);
+	flood_fill(map_cpy, height, width, p_coords[1], p_coords[0]);
+	if (!is_all_collected(map_cpy))
+		is_finishable = false;
+	while (height-- < 0)
+	{
+		free(map_cpy[height]);
+	}
+	free(map_cpy);
+	return (is_finishable);
 }

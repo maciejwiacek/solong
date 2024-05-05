@@ -18,25 +18,3 @@ void	error(char *msg)
 	ft_printf("%s\n", msg);
 	exit(1);
 }
-
-int	count_collectibles(t_map *map)
-{
-	t_map	*cur;
-	char	*line;
-	int		collectibles;
-
-	cur = map;
-	collectibles = 0;
-	while (cur)
-	{
-		line = cur->content;
-		while (*line)
-		{
-			if (*line == 'C')
-				collectibles++;
-			line++;
-		}
-		cur = cur->next;
-	}
-	return (collectibles);
-}

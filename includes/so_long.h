@@ -20,18 +20,22 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-typedef struct s_map {
-  char *content;
-  struct s_map *next;
-} t_map;
+typedef struct s_map
+{
+  char **board;
+  int *e;
+}	t_map;
 
-t_map *ft_lstnew(char *str);
-void ft_lstadd_back(t_map **lst, t_map *new_list);
-void error(char *msg);
-char **parse_map(char *map_path);
-void validate_map(t_map *map);
-bool check_for_chars(t_map *map);
-int len_no_newline(char *s);
-bool is_closed(t_map *map);
+void	error(char *msg);
+char	**parse_map(char *map_path);
+void	validate_map(char **map);
+bool	check_for_chars(char **map);
+int		len_no_newline(char *s);
+bool	is_closed(char **map);
+void	find_coords(char **map, char c, int coords[2]);
+void	flood_fill(char **map, int height, int width, int y, int x);
+bool	is_finishable(char **map);
+bool	is_all_collected(char **map);
+bool	is_finishable(char **map);
 
 #endif
