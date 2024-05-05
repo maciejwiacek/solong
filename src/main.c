@@ -15,14 +15,17 @@
 
 int	main(int argc, char *argv[])
 {
-	t_map	*map;
+	char	**map;
 
 	if (argc != 2)
 		error("Wrong number of arguments.");
-	map = NULL;
-	parse_map(argv[1], &map);
-	validate_map(map);
+	map = parse_map(argv[1]);
+	// validate_map(map);
+	for (int i = 0; map[i]; i++)
+		{
+			ft_printf("Line: %s\n", map[i]);
+		}
 	ft_printf("Map parsed succsefully\n");
-	ft_printf("Map has %d collectibles\n", count_collectibles(map));
+	// ft_printf("Map has %d collectibles\n", count_collectibles(map));
 	return (0);
 }

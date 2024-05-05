@@ -9,7 +9,8 @@ SRC =	src/main.c \
 			src/parse_map.c \
 			src/validate_map.c \
 			src/validate_map2.c \
-			src/validate_utils.c
+			src/validate_utils.c \
+			src/flood_fill.c
 OBJ =	$(SRC:.c=.o)
 
 # COMMANDS #
@@ -21,7 +22,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C app
-	$(CC) $(OBJ) app/libftprintf.a -o main
+	$(CC) $(OBJ) app/libftprintf.a -o $(NAME)
 
 clean:
 	make clean -C app
