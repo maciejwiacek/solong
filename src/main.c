@@ -23,5 +23,6 @@ int	main(int argc, char *argv[])
 	parse_map(argv[1], &map);
 	validate_map(map);
 	ft_printf("Map parsed succsefully\n");
+	ft_printf("Map has %d collectibles\n", count_collectibles(map));
 	return (0);
 }
