@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:41:07 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:46:50 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (map[i])
 		printf("%s\n", map[i++]);
+	while (i-- > 0)
+		free(map[i]);
+	free(map);
 	return (0);
 }

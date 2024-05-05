@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:39:39 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:44:54 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ char	**parse_map(char *map_path)
 			str = ft_strdup("");
 		tmp = str;
 		str = ft_strjoin(tmp, line);
+		free(line);
 		line = get_next_line(fd);
 		free(tmp);
 	}
 	result = ft_split(str, '\n');
+	free(line);
 	free(str);
 	return (result);
 }

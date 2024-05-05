@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:36:38 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:46:04 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ bool	is_finishable(char **map)
 	flood_fill(map_cpy, height, p_coords[1], p_coords[0]);
 	if (!is_all_collected(map_cpy))
 		is_finishable = false;
-	while (height-- < 0)
+	while (height-- > 0)
 	{
 		free(map_cpy[height]);
 	}
