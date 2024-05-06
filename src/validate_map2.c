@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:46:04 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:15:58 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static char	**duplicate_map(char **map)
 	res = malloc((i + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
-	res[i + 1] = NULL;
+	res[i] = NULL;
 	i = 0;
 	while (map[i])
 	{

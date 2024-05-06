@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:33:16 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:37:30 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:11:46 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool	is_all_collected(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (map[i][j] != '\0' && map[i][j] != '\n')
 		{
 			if (map[i][j] == 'C' || map[i][j] == 'E')
 				return (false);
