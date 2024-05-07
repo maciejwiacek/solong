@@ -37,5 +37,6 @@ void	flood_fill(char **map, int height, int y, int x);
 bool	is_finishable(char **map);
 bool	is_all_collected(char **map);
 bool	is_finishable(char **map);
+size_t	count_collectibles(char **map);
 
 #endif

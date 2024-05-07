@@ -24,6 +24,7 @@ int	main(int argc, char *argv[])
 	validate_map(map);
 	ft_printf("Map parsed successfully\n");
 	i = 0;
+	ft_printf("Map contains %d collectibles\n", count_collectibles(map));
 	while (map[i])
 		printf("%s\n", map[i++]);
 	while (i-- > 0)

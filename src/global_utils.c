@@ -18,3 +18,25 @@ void	error(char *msg)
 	ft_printf("%s\n", msg);
 	exit(1);
 }
+
+size_t	count_collectibles(char **map)
+{
+	size_t	x;
+	size_t	y;
+	size_t	collectibles;
+
+	y = 0;
+	collectibles = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'C')
+				collectibles++;
+			x++;
+		}
+		y++;
+	}
+	return (collectibles);
+}
