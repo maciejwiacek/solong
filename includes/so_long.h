@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 00:40:41 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 09:48:26 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../app/includes/get_next_line.h"
 # include "../app/includes/libft.h"
 # include "../app/includes/printf.h"
+# include "../minilibx-linux/mlx.h"
+# include <math.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>

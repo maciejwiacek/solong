@@ -21,7 +21,8 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C app
-	$(CC) $(OBJ) app/libftprintf.a -o $(NAME)
+	make -C minilibx-linux
+	$(CC) $(OBJ) app/libftprintf.a -Lminilibx-linux -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
 
 clean:
 	make clean -C app
