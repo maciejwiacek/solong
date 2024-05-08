@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 12:22:23 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:21:42 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argc, char *argv[])
 	ft_printf("Map contains %d collectibles\n", count_collectibles(map));
 	while (map[i])
 		printf("%s\n", map[i++]);
+	render_map(map);
 	while (i-- > 0)
 		free(map[i]);
-	render_map();
 	free(map);
 	return (0);
 }
