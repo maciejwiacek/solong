@@ -9,6 +9,7 @@ SRC =	src/main.c \
 			src/validate_map2.c \
 			src/validate_utils.c \
 			src/flood_fill.c
+MLX =	minilibx-linux
 OBJ =	$(SRC:.c=.o)
 
 # COMMANDS #
