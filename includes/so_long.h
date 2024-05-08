@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 13:07:46 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:06:20 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # ifndef TRANSPARENT_COLOR
-# define TRANSPARENT_COLOR 0xFF0000
+#  define TRANSPARENT_COLOR 0xFF0000
 # endif
 # include "../app/includes/get_next_line.h"
 # include "../app/includes/libft.h"
@@ -27,18 +27,18 @@
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_window;
+	void	*m;
+	void	*w;
 }	t_mlx;
 
-typedef struct	s_textures
+typedef struct s_txt
 {
-	void	*wall;
-	void	*bg;
-	void	*collect;
-	void	*player;
-	void	*exit;
-}	t_textures;
+	void	*w;
+	void	*b;
+	void	*c;
+	void	*p;
+	void	*e;
+}	t_txt;
 
 void	error(char *msg);
 char	**parse_map(char *map_path);

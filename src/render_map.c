@@ -6,24 +6,24 @@
 /*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:16:02 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 13:33:56 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:10:51 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	init_textures(t_mlx mlx, t_textures *textures)
+static void	init_textures(t_mlx mlx, t_txt *txt)
 {
-	int	width;
-	int height;
+	int	w;
+	int	h;
 
-	width = 50;
-	height = 50;
-	textures->bg = mlx_xpm_file_to_image(mlx.mlx, "./textures/bg.xpm", &width, &height);
-	textures->collect = mlx_xpm_file_to_image(mlx.mlx, "./textures/collectible.xpm", &width, &height);
-	textures->exit = mlx_xpm_file_to_image(mlx.mlx, "./textures/exit.xpm", &width, &height);
-	textures->player = mlx_xpm_file_to_image(mlx.mlx, "./textures/player.xpm", &width, &height);
-	textures->wall = mlx_xpm_file_to_image(mlx.mlx, "./textures/wall.xpm", &width, &height);
+	w = 50;
+	h = 50;
+	txt->b = mlx_xpm_file_to_image(mlx.m, "./textures/b.xpm", &w, &h);
+	txt->c = mlx_xpm_file_to_image(mlx.m, "./textures/c.xpm", &w, &h);
+	txt->e = mlx_xpm_file_to_image(mlx.m, "./textures/e.xpm", &w, &h);
+	txt->p = mlx_xpm_file_to_image(mlx.m, "./textures/p.xpm", &w, &h);
+	txt->w = mlx_xpm_file_to_image(mlx.m, "./textures/w.xpm", &w, &h);
 }
 
 // TODO: Player (up, down, left, right);
@@ -38,10 +38,10 @@ static int	calculate_map_height(char **map)
 	return (i);
 }
 
-static void	render_handling(t_mlx mlx, char **map, t_textures textures)
+static void	render_handling(t_mlx mlx, char **map, t_txt txt)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -50,15 +50,15 @@ static void	render_handling(t_mlx mlx, char **map, t_textures textures)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, textures.wall, j * 50, i * 50);
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.w, j * 50, i * 50);
 			if (map[i][j] == '0')
-				mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, textures.bg, j * 50, i * 50);
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.b, j * 50, i * 50);
 			if (map[i][j] == 'C')
-				mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, textures.collect, j * 50, i * 50);
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.c, j * 50, i * 50);
 			if (map[i][j] == 'P')
-				mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, textures.player, j * 50, i * 50);
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.p, j * 50, i * 50);
 			if (map[i][j] == 'E')
-				mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, textures.exit, j * 50, i * 50);
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.e, j * 50, i * 50);
 			j++;
 		}
 		i++;
@@ -67,16 +67,16 @@ static void	render_handling(t_mlx mlx, char **map, t_textures textures)
 
 void	render_map(char **map)
 {
-	t_mlx		mlx;
-	t_textures	textures;
-	int			height;
-	int 		width;
+	t_mlx	mlx;
+	t_txt	txt;
+	int		height;
+	int		width;
 
 	height = calculate_map_height(map);
 	width = len_no_newline(map[0]);
-	mlx.mlx = mlx_init();
-	mlx.mlx_window = mlx_new_window(mlx.mlx, width * 50, height * 50, "so_long");
-	init_textures(mlx, &textures);
-	render_handling(mlx, map, textures);
-	mlx_loop(mlx.mlx);
+	mlx.m = mlx_init();
+	mlx.w = mlx_new_window(mlx.m, width * 50, height * 50, "so_long");
+	init_textures(mlx, &txt);
+	render_handling(mlx, map, txt);
+	mlx_loop(mlx.m);
 }
