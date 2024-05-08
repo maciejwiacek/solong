@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 09:49:52 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 12:22:23 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	main(int argc, char *argv[])
 		printf("%s\n", map[i++]);
 	while (i-- > 0)
 		free(map[i]);
-	void *mlx = mlx_init();
-	void *mlx_window = mlx_new_window(mlx, 600, 600, "Test");
-	mlx_loop(mlx);
+	render_map();
 	free(map);
 	return (0);
 }

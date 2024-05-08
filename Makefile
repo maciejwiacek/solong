@@ -8,7 +8,9 @@ SRC =	src/main.c \
 			src/validate_map.c \
 			src/validate_map2.c \
 			src/validate_utils.c \
-			src/flood_fill.c
+			src/flood_fill.c \
+			src/render_utils.c \
+			src/render_map.c
 MLX =	minilibx-linux
 OBJ =	$(SRC:.c=.o)
 
@@ -22,7 +24,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	make -C app
 	make -C minilibx-linux
-	$(CC) $(OBJ) app/libftprintf.a -Lminilibx-linux -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
+	$(CC) $(OBJ) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
 
 clean:
 	make clean -C app
