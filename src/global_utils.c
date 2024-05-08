@@ -6,16 +6,28 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 16:03:45 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 14:36:49 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	error(char *msg)
+void	error(char **map, char *msg)
 {
+	int	i;
+
+	i = 0;
 	ft_printf("Error\n");
 	ft_printf("%s\n", msg);
+	if (map && map[0])
+	{
+		while (map[i])
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
+	}
 	exit(1);
 }
 

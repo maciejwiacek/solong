@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 13:21:42 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 14:32:55 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ int	main(int argc, char *argv[])
 	size_t	i;
 
 	if (argc != 2)
-		error("Wrong number of arguments.");
+		error(NULL, "Wrong number of arguments.");
 	map = parse_map(argv[1]);
 	validate_map(map);
-	ft_printf("Map parsed successfully\n");
 	i = 0;
-	ft_printf("Map contains %d collectibles\n", count_collectibles(map));
+//	render_map(map);
 	while (map[i])
-		printf("%s\n", map[i++]);
-	render_map(map);
-	while (i-- > 0)
+	{
 		free(map[i]);
+		i++;
+	}
 	free(map);
 	return (0);
 }

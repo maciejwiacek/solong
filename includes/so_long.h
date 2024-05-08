@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 16:06:20 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/08 14:31:05 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_txt
 	void	*e;
 }	t_txt;
 
-void	error(char *msg);
+void	error(char **map, char *msg);
 char	**parse_map(char *map_path);
 void	validate_map(char **map);
 bool	check_for_chars(char **map);

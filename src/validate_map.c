@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/04 10:32:09 by mwiacek          ###   ########.fr       */
+/*   Created: 2024/05/08 14:29:55 by mwiacek           #+#    #+#             */
+/*   Updated: 2024/05/08 14:33:33 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static bool	check_for_start(char **map)
 	size_t	starts;
 
 	i = 0;
-	j = 0;
 	starts = 0;
 	while (map[i])
 	{
@@ -44,7 +43,6 @@ static bool	check_for_exit(char **map)
 	size_t	exits;
 
 	i = 0;
-	j = 0;
 	exits = 0;
 	while (map[i])
 	{
@@ -81,15 +79,15 @@ static bool	is_rectangular(char **map)
 void	validate_map(char **map)
 {
 	if (!check_for_exit(map))
-		error("Wrong number of exits.");
+		error(map, "Wrong number of exits.");
 	if (!check_for_start(map))
-		error("Wrong number of starts.");
+		error(map, "Wrong number of starts.");
 	if (!is_rectangular(map))
-		error("Map is not rectangular.");
+		error(map, "Map is not rectangular.");
 	if (!check_for_chars(map))
-		error("Map contains invalid characters.");
+		error(map, "Map contains invalid characters.");
 	if (!is_closed(map))
-		error("Map is not closed.");
+		error(map, "Map is not closed.");
 	if (!is_finishable(map))
-		error("Map is not finishable.");
+		error(map, "Map is not finishable.");
 }
