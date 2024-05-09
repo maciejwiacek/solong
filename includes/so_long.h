@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 14:31:05 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 09:23:40 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-typedef struct s_mlx
-{
-	void	*m;
-	void	*w;
-}	t_mlx;
-
 typedef struct s_txt
 {
 	void	*w;
@@ -39,6 +33,16 @@ typedef struct s_txt
 	void	*p;
 	void	*e;
 }	t_txt;
+
+typedef struct s_mlx
+{
+	void	*m;
+	void	*w;
+	char	***map;
+	int		p_pos[2];
+	int		e_pos[2];
+	t_txt	txt;
+}	t_mlx;
 
 void	error(char **map, char *msg);
 char	**parse_map(char *map_path);
@@ -50,7 +54,6 @@ void	find_coords(char **map, char c, int coords[2]);
 void	flood_fill(char **map, int height, int y, int x);
 bool	is_finishable(char **map);
 bool	is_all_collected(char **map);
-size_t	count_collectibles(char **map);
 
 // MLX
 void	render_map(char **map);

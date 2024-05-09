@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/06 15:15:58 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 06:23:18 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ bool	is_finishable(char **map)
 		height++;
 	map_cpy = duplicate_map(map);
 	if (!map_cpy)
-		error("Allocation failed.");
+		error(NULL, "Allocation failed.");
 	is_finishable = true;
 	find_coords(map_cpy, 'P', p_coords);
 	flood_fill(map_cpy, height, p_coords[1], p_coords[0]);

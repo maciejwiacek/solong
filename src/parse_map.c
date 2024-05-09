@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 14:33:19 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 07:09:56 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	**parse_map(char *map_path)
 {
 	int		fd;
 	char	*str;
-	char 	**res;
+	char	**res;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
