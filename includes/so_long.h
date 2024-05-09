@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 09:23:40 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 11:33:20 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_mlx
 	char	***map;
 	int		p_pos[2];
 	int		e_pos[2];
+	int		moves;
 	t_txt	txt;
 }	t_mlx;
 
@@ -54,8 +55,16 @@ void	find_coords(char **map, char c, int coords[2]);
 void	flood_fill(char **map, int height, int y, int x);
 bool	is_finishable(char **map);
 bool	is_all_collected(char **map);
+bool	is_finished(char **map);
 
 // MLX
 void	render_map(char **map);
+int		input_handling(int keycode, t_mlx *mlx);
+void	move_up(t_mlx *mlx);
+void	move_down(t_mlx *mlx);
+void	move_left(t_mlx *mlx);
+void	move_right(t_mlx *mlx);
+int		close_window(t_mlx *mlx);
+void	render_handling(t_mlx mlx, char **map, t_txt txt);
 
 #endif

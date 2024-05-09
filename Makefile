@@ -9,8 +9,9 @@ SRC =	src/main.c \
 			src/validate_map2.c \
 			src/validate_utils.c \
 			src/flood_fill.c \
-			src/render_utils.c \
-			src/render_map.c
+			src/render_map.c \
+			src/input_handling.c \
+			src/movement_handling.c
 MLX =	minilibx-linux
 OBJ =	$(SRC:.c=.o)
 

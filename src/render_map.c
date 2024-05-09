@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:16:02 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 09:27:53 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 11:36:36 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	calculate_map_height(char **map)
 	return (i);
 }
 
-static void	render_handling(t_mlx mlx, char **map, t_txt txt)
+void	render_handling(t_mlx mlx, char **map, t_txt txt)
 {
 	int	i;
 	int	j;
@@ -65,73 +65,6 @@ static void	render_handling(t_mlx mlx, char **map, t_txt txt)
 	}
 }
 
-static int	close_window(t_mlx *mlx)
-{
-	mlx_destroy_window(mlx->m, mlx->w);
-	exit (0);
-}
-
-int	key_handling(int keycode, t_mlx *mlx)
-{
-	if (keycode == 100 && mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] + 1] != '1') // RIGHT
-	{
-		if (mlx->p_pos[0] == mlx->e_pos[0] && mlx->p_pos[1] == mlx->e_pos[1])
-		{
-			if (is_all_collected(mlx->map[0]))
-				close_window(mlx);
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = 'E';
-		}
-		else
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
-		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] + 1] = 'P';
-		mlx->p_pos[0]++;
-		render_handling(mlx[0], mlx->map[0], mlx->txt);
-	}
-	if (keycode == 97 && mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] - 1] != '1') // LEFT
-	{
-		if (mlx->p_pos[0] == mlx->e_pos[0] && mlx->p_pos[1] == mlx->e_pos[1])
-		{
-			if (is_all_collected(mlx->map[0]))
-				close_window(mlx);
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = 'E';
-		}
-		else
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
-		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] - 1] = 'P';
-		mlx->p_pos[0]--;
-		render_handling(mlx[0], mlx->map[0], mlx->txt);
-	}
-	if (keycode == 119 && mlx->map[0][mlx->p_pos[1] - 1][mlx->p_pos[0]] != '1') // UP
-	{
-		if (mlx->p_pos[0] == mlx->e_pos[0] && mlx->p_pos[1] == mlx->e_pos[1])
-		{
-			if (is_all_collected(mlx->map[0]))
-				close_window(mlx);
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = 'E';
-		}
-		else
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
-		mlx->map[0][mlx->p_pos[1] - 1][mlx->p_pos[0]] = 'P';
-		mlx->p_pos[1]--;
-		render_handling(mlx[0], mlx->map[0], mlx->txt);
-	}
-	if (keycode == 115 && mlx->map[0][mlx->p_pos[1] + 1][mlx->p_pos[0]] != '1') // DOWN
-	{
-		if (mlx->p_pos[0] == mlx->e_pos[0] && mlx->p_pos[1] == mlx->e_pos[1])
-		{
-			if (is_all_collected(mlx->map[0]))
-				close_window(mlx);
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = 'E';
-		}
-		else
-			mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
-		mlx->map[0][mlx->p_pos[1] + 1][mlx->p_pos[0]] = 'P';
-		mlx->p_pos[1]++;
-		render_handling(mlx[0], mlx->map[0], mlx->txt);
-	}
-	return 0;
-}
-
 void	render_map(char **map)
 {
 	t_mlx	mlx;
@@ -148,8 +81,9 @@ void	render_map(char **map)
 	find_coords(map, 'E', mlx.e_pos);
 	init_textures(mlx, &txt);
 	mlx.txt = txt;
+	mlx.moves = 0;
 	render_handling(mlx, map, txt);
 	mlx_hook(mlx.w, 17, 0, &close_window, &mlx);
-	mlx_key_hook(mlx.w, key_handling, &mlx);
+	mlx_key_hook(mlx.w, input_handling, &mlx);
 	mlx_loop(mlx.m);
 }
