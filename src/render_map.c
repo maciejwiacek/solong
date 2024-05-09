@@ -65,24 +65,24 @@ void	render_handling(t_mlx mlx, char **map, t_txt txt)
 	}
 }
 
-void	render_map(char **map)
+void	render_map(char ***map)
 {
 	t_mlx	mlx;
 	t_txt	txt;
 	int		height;
 	int		width;
 
-	height = calculate_map_height(map);
-	width = len_no_newline(map[0]);
+	height = calculate_map_height(*map);
+	width = len_no_newline(map[0][0]);
 	mlx.m = mlx_init();
 	mlx.w = mlx_new_window(mlx.m, width * 50, height * 50, "so_long");
-	mlx.map = &map;
-	find_coords(map, 'P', mlx.p_pos);
-	find_coords(map, 'E', mlx.e_pos);
+	mlx.map = map;
+	find_coords(*map, 'P', mlx.p_pos);
+	find_coords(*map, 'E', mlx.e_pos);
 	init_textures(mlx, &txt);
 	mlx.txt = txt;
 	mlx.moves = 0;
-	render_handling(mlx, map, txt);
+	render_handling(mlx, *map, txt);
 	mlx_hook(mlx.w, 17, 0, &close_window, &mlx);
 	mlx_key_hook(mlx.w, input_handling, &mlx);
 	mlx_loop(mlx.m);

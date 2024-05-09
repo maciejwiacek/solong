@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 14:37:32 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 12:01:24 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 	map = parse_map(argv[1]);
 	validate_map(map);
 	i = 0;
-	render_map(map);
+	render_map(&map);
 	while (map[i])
 	{
 		free(map[i]);
