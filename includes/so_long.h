@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 12:01:20 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:44:45 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ typedef struct s_txt
 	void	*w;
 	void	*b;
 	void	*c;
-	void	*p;
 	void	*e;
+	void	*u;
+	void	*d;
+	void	*l;
+	void	*r;
 }	t_txt;
 
 typedef struct s_mlx
@@ -65,6 +68,6 @@ void	move_down(t_mlx *mlx);
 void	move_left(t_mlx *mlx);
 void	move_right(t_mlx *mlx);
 int		close_window(t_mlx *mlx);
-void	render_handling(t_mlx mlx, char **map, t_txt txt);
+void	render_handling(t_mlx mlx, char **map, t_txt txt, char direction);
 
 #endif

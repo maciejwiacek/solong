@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:22:40 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 11:40:06 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:46:01 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	move_up(t_mlx *mlx)
 		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
 	mlx->map[0][mlx->p_pos[1] - 1][mlx->p_pos[0]] = 'P';
 	mlx->p_pos[1]--;
-	render_handling(mlx[0], mlx->map[0], mlx->txt);
+	render_handling(mlx[0], mlx->map[0], mlx->txt, 'u');
 	mlx->moves++;
 }
 
@@ -48,7 +48,7 @@ void	move_down(t_mlx *mlx)
 		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
 	mlx->map[0][mlx->p_pos[1] + 1][mlx->p_pos[0]] = 'P';
 	mlx->p_pos[1]++;
-	render_handling(mlx[0], mlx->map[0], mlx->txt);
+	render_handling(mlx[0], mlx->map[0], mlx->txt, 'd');
 	mlx->moves++;
 }
 
@@ -68,7 +68,7 @@ void	move_left(t_mlx *mlx)
 		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
 	mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] - 1] = 'P';
 	mlx->p_pos[0]--;
-	render_handling(mlx[0], mlx->map[0], mlx->txt);
+	render_handling(mlx[0], mlx->map[0], mlx->txt, 'l');
 	mlx->moves++;
 }
 
@@ -88,6 +88,6 @@ void	move_right(t_mlx *mlx)
 		mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0]] = '0';
 	mlx->map[0][mlx->p_pos[1]][mlx->p_pos[0] + 1] = 'P';
 	mlx->p_pos[0]++;
-	render_handling(mlx[0], mlx->map[0], mlx->txt);
+	render_handling(mlx[0], mlx->map[0], mlx->txt, 'r');
 	mlx->moves++;
 }

@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:16:02 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 11:36:36 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:46:48 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ static void	init_textures(t_mlx mlx, t_txt *txt)
 	txt->b = mlx_xpm_file_to_image(mlx.m, "./textures/b.xpm", &w, &h);
 	txt->c = mlx_xpm_file_to_image(mlx.m, "./textures/c.xpm", &w, &h);
 	txt->e = mlx_xpm_file_to_image(mlx.m, "./textures/e.xpm", &w, &h);
-	txt->p = mlx_xpm_file_to_image(mlx.m, "./textures/p.xpm", &w, &h);
 	txt->w = mlx_xpm_file_to_image(mlx.m, "./textures/w.xpm", &w, &h);
+	txt->u = mlx_xpm_file_to_image(mlx.m, "./textures/u.xpm", &w, &h);
+	txt->d = mlx_xpm_file_to_image(mlx.m, "./textures/d.xpm", &w, &h);
+	txt->l = mlx_xpm_file_to_image(mlx.m, "./textures/l.xpm", &w, &h);
+	txt->r = mlx_xpm_file_to_image(mlx.m, "./textures/r.xpm", &w, &h);
 }
-
-// TODO: Player (up, down, left, right);
 
 static int	calculate_map_height(char **map)
 {
@@ -38,30 +39,41 @@ static int	calculate_map_height(char **map)
 	return (i);
 }
 
-void	render_handling(t_mlx mlx, char **map, t_txt txt)
+static void	render_player(t_mlx mlx, t_txt txt, char direction, int *pos)
 {
-	int	i;
-	int	j;
+	if (direction == 'u')
+		mlx_put_image_to_window(mlx.m, mlx.w, txt.u, pos[1] * 50, pos[0] * 50);
+	if (direction == 'd')
+		mlx_put_image_to_window(mlx.m, mlx.w, txt.d, pos[1] * 50, pos[0] * 50);
+	if (direction == 'l')
+		mlx_put_image_to_window(mlx.m, mlx.w, txt.l, pos[1] * 50, pos[0] * 50);
+	if (direction == 'r')
+		mlx_put_image_to_window(mlx.m, mlx.w, txt.r, pos[1] * 50, pos[0] * 50);
+}
 
-	i = 0;
-	while (map[i])
+void	render_handling(t_mlx mlx, char **map, t_txt txt, char direction)
+{
+	int pos[2];
+
+	pos[0] = 0;
+	while (map[pos[0]])
 	{
-		j = 0;
-		while (map[i][j])
+		pos[1] = 0;
+		while (map[pos[0]][pos[1]])
 		{
-			if (map[i][j] == '1')
-				mlx_put_image_to_window(mlx.m, mlx.w, txt.w, j * 50, i * 50);
-			if (map[i][j] == '0')
-				mlx_put_image_to_window(mlx.m, mlx.w, txt.b, j * 50, i * 50);
-			if (map[i][j] == 'C')
-				mlx_put_image_to_window(mlx.m, mlx.w, txt.c, j * 50, i * 50);
-			if (map[i][j] == 'P')
-				mlx_put_image_to_window(mlx.m, mlx.w, txt.p, j * 50, i * 50);
-			if (map[i][j] == 'E')
-				mlx_put_image_to_window(mlx.m, mlx.w, txt.e, j * 50, i * 50);
-			j++;
+			if (map[pos[0]][pos[1]] == '1')
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.w, pos[1] * 50, pos[0] * 50);
+			if (map[pos[0]][pos[1]] == '0')
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.b, pos[1] * 50, pos[0] * 50);
+			if (map[pos[0]][pos[1]] == 'C')
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.c, pos[1] * 50, pos[0] * 50);
+			if (map[pos[0]][pos[1]] == 'P')
+				render_player(mlx, txt, direction, pos);
+			if (map[pos[0]][pos[1]] == 'E')
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.e, pos[1] * 50, pos[0] * 50);
+			pos[1]++;
 		}
-		i++;
+		pos[0]++;
 	}
 }
 
@@ -82,7 +94,7 @@ void	render_map(char ***map)
 	init_textures(mlx, &txt);
 	mlx.txt = txt;
 	mlx.moves = 0;
-	render_handling(mlx, *map, txt);
+	render_handling(mlx, *map, txt, 'r');
 	mlx_hook(mlx.w, 17, 0, &close_window, &mlx);
 	mlx_key_hook(mlx.w, input_handling, &mlx);
 	mlx_loop(mlx.m);

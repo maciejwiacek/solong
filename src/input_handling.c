@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:19:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 12:02:36 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:45:42 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	close_window(t_mlx *mlx)
 	mlx_destroy_image(mlx->m, mlx->txt.b);
 	mlx_destroy_image(mlx->m, mlx->txt.c);
 	mlx_destroy_image(mlx->m, mlx->txt.e);
-	mlx_destroy_image(mlx->m, mlx->txt.p);
+	mlx_destroy_image(mlx->m, mlx->txt.u);
+	mlx_destroy_image(mlx->m, mlx->txt.d);
+	mlx_destroy_image(mlx->m, mlx->txt.l);
+	mlx_destroy_image(mlx->m, mlx->txt.r);
 	mlx_destroy_window(mlx->m, mlx->w);
 	mlx_destroy_display(mlx->m);
 	free(mlx->m);
