@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:16:02 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/11 18:23:03 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/12 20:51:39 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	init_textures(t_mlx *mlx, t_txt *txt)
 	txt->d = mlx_xpm_file_to_image(mlx->m, "./textures/d.xpm", &w, &h);
 	txt->l = mlx_xpm_file_to_image(mlx->m, "./textures/l.xpm", &w, &h);
 	txt->r = mlx_xpm_file_to_image(mlx->m, "./textures/r.xpm", &w, &h);
+	txt->x = mlx_xpm_file_to_image(mlx->m, "./textures/x.xpm", &w, &h);
 	mlx->txt = *txt;
 }
 
@@ -72,6 +73,8 @@ void	render_handling(t_mlx mlx, char **map, t_txt txt, char direction)
 				render_player(mlx, txt, direction, pos);
 			if (map[pos[0]][pos[1]] == 'E')
 				mlx_put_image_to_window(mlx.m, mlx.w, txt.e, pos[1] * 50, pos[0] * 50);
+			if (map[pos[0]][pos[1]] == 'X')
+				mlx_put_image_to_window(mlx.m, mlx.w, txt.x, pos[1] * 50, pos[0] * 50);
 			pos[1]++;
 		}
 		pos[0]++;

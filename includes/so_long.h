@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/11 17:58:28 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/12 20:51:01 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_txt
 	void	*d;
 	void	*l;
 	void	*r;
+	void	*x;
 }	t_txt;
 
 typedef struct s_mlx

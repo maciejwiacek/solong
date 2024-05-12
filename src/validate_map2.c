@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 06:23:18 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/12 20:52:50 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	check_for_chars(char **map)
 		{
 			if (map[i][j] != 'P' && map[i][j] != 'E'
 				&& map[i][j] != 'C' && map[i][j] != '1'
-				&& map[i][j] != '0')
+				&& map[i][j] != '0' && map[i][j] != 'X')
 				return (false);
 			j++;
 		}
