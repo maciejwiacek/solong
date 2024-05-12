@@ -6,13 +6,13 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 07:09:56 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:13:50 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-char	*ft_strjoin_free(char *s1, char *s2)
+static char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*result;
 
@@ -30,15 +30,15 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (result);
 }
 
-char	*create_str(int fd)
+static char	*create_str(int fd)
 {
 	char	*line;
 	char	*str;
 
-	str = NULL;
 	line = get_next_line(fd);
 	if (!line)
 		error(NULL, "Map file is empty.");
+	str = NULL;
 	str = ft_strdup("");
 	while (line)
 	{

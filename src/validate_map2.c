@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/12 20:52:50 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:08:59 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ bool	check_for_chars(char **map)
 	size_t	j;
 
 	i = 0;
-	j = 0;
 	while (map[i])
 	{
 		j = 0;
