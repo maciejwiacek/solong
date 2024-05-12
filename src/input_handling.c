@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_handling.c                                :+:      :+:    :+:   */
+/*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:19:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 14:45:42 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/11 18:00:30 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ int	input_handling(int keycode, t_mlx *mlx)
 		move_left(mlx);
 	if (keycode == 100 || keycode == 65363)
 		move_right(mlx);
+	if (keycode == 65307)
+		close_window(mlx);
 	return (0);
 }

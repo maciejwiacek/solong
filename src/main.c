@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 12:01:24 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/11 17:58:19 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,11 @@
 int	main(int argc, char *argv[])
 {
 	char	**map;
-	size_t	i;
 
 	if (argc != 2)
 		error(NULL, "Wrong number of arguments.");
 	map = parse_map(argv[1]);
 	validate_map(map);
-	i = 0;
-	render_map(&map);
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	start_game(&map);
 	return (0);
 }

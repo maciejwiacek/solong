@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 14:44:45 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/11 17:58:28 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	is_all_collected(char **map);
 bool	is_finished(char **map);
 
 // MLX
-void	render_map(char ***map);
+void	start_game(char ***map);
 int		input_handling(int keycode, t_mlx *mlx);
 void	move_up(t_mlx *mlx);
 void	move_down(t_mlx *mlx);

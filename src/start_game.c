@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:16:02 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/09 14:46:48 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/11 18:23:03 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	init_textures(t_mlx mlx, t_txt *txt)
+static void	init_textures(t_mlx *mlx, t_txt *txt)
 {
 	int	w;
 	int	h;
 
 	w = 50;
 	h = 50;
-	txt->b = mlx_xpm_file_to_image(mlx.m, "./textures/b.xpm", &w, &h);
-	txt->c = mlx_xpm_file_to_image(mlx.m, "./textures/c.xpm", &w, &h);
-	txt->e = mlx_xpm_file_to_image(mlx.m, "./textures/e.xpm", &w, &h);
-	txt->w = mlx_xpm_file_to_image(mlx.m, "./textures/w.xpm", &w, &h);
-	txt->u = mlx_xpm_file_to_image(mlx.m, "./textures/u.xpm", &w, &h);
-	txt->d = mlx_xpm_file_to_image(mlx.m, "./textures/d.xpm", &w, &h);
-	txt->l = mlx_xpm_file_to_image(mlx.m, "./textures/l.xpm", &w, &h);
-	txt->r = mlx_xpm_file_to_image(mlx.m, "./textures/r.xpm", &w, &h);
+	txt->b = mlx_xpm_file_to_image(mlx->m, "./textures/b.xpm", &w, &h);
+	txt->c = mlx_xpm_file_to_image(mlx->m, "./textures/c.xpm", &w, &h);
+	txt->e = mlx_xpm_file_to_image(mlx->m, "./textures/e.xpm", &w, &h);
+	txt->w = mlx_xpm_file_to_image(mlx->m, "./textures/w.xpm", &w, &h);
+	txt->u = mlx_xpm_file_to_image(mlx->m, "./textures/u.xpm", &w, &h);
+	txt->d = mlx_xpm_file_to_image(mlx->m, "./textures/d.xpm", &w, &h);
+	txt->l = mlx_xpm_file_to_image(mlx->m, "./textures/l.xpm", &w, &h);
+	txt->r = mlx_xpm_file_to_image(mlx->m, "./textures/r.xpm", &w, &h);
+	mlx->txt = *txt;
 }
 
 static int	calculate_map_height(char **map)
@@ -77,7 +78,7 @@ void	render_handling(t_mlx mlx, char **map, t_txt txt, char direction)
 	}
 }
 
-void	render_map(char ***map)
+void	start_game(char ***map)
 {
 	t_mlx	mlx;
 	t_txt	txt;
@@ -91,8 +92,7 @@ void	render_map(char ***map)
 	mlx.map = map;
 	find_coords(*map, 'P', mlx.p_pos);
 	find_coords(*map, 'E', mlx.e_pos);
-	init_textures(mlx, &txt);
-	mlx.txt = txt;
+	init_textures(&mlx, &txt);
 	mlx.moves = 0;
 	render_handling(mlx, *map, txt, 'r');
 	mlx_hook(mlx.w, 17, 0, &close_window, &mlx);

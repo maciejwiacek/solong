@@ -9,14 +9,14 @@ SRC =	src/main.c \
 			src/validate_map2.c \
 			src/validate_utils.c \
 			src/flood_fill.c \
-			src/render_map.c \
+			src/start_game.c \
 			src/input_handling.c \
 			src/movement_handling.c
 MLX =	minilibx-linux
 OBJ =	$(SRC:.c=.o)
 
 # COMMANDS #
-CC =	gcc
+CC =	cc
 RM =	rm -rf
 
 # RULES #
@@ -29,6 +29,7 @@ $(NAME):	$(OBJ)
 
 clean:
 	make clean -C app
+	make clean -C minilibx-linux
 	$(RM) $(OBJ)
 
 fclean:	clean
