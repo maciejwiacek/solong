@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwiacek <mwiacek@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:29:55 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/08 14:33:33 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:36:24 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static bool	has_collectibles(char **map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				return (true);
+			j++;
+		}
+		i++;
+	}
+	return (false);
+}
 
 static bool	check_for_start(char **map)
 {
@@ -82,6 +102,8 @@ void	validate_map(char **map)
 		error(map, "Wrong number of exits.");
 	if (!check_for_start(map))
 		error(map, "Wrong number of starts.");
+	if (!has_collectibles(map))
+		error(map, "Map has zero collectibles.");
 	if (!is_rectangular(map))
 		error(map, "Map is not rectangular.");
 	if (!check_for_chars(map))
