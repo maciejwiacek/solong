@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 10:17:48 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/13 13:43:49 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:03:46 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void	move_down(t_mlx *mlx);
 void	move_left(t_mlx *mlx);
 void	move_right(t_mlx *mlx);
 int		close_window(t_mlx *mlx);
+void	render_score(t_mlx mlx, t_txt txt);
+void	render_player(t_mlx mlx, t_txt txt, char direction, const int *pos);
+void	render_tile(t_mlx mlx, t_txt txt, int *pos, char c);
 void	render_handling(t_mlx mlx, char **map, t_txt txt, char direction);
 
 #endif

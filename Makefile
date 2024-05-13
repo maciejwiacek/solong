@@ -12,7 +12,8 @@ SRC =	src/main.c \
 			src/start_game.c \
 			src/input_handling.c \
 			src/movement_handling.c \
-			src/struct_init.c
+			src/struct_init.c \
+			src/render_utils.c
 MLX =	minilibx-linux
 OBJ =	$(SRC:.c=.o)
 
