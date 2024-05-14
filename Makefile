@@ -25,6 +25,7 @@ RM =	rm -rf
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
+	git clone https://github.com/42Paris/minilibx-linux.git
 	make -C app
 	make -C minilibx-linux
 	$(CC) $(OBJ) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
