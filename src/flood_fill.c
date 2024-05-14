@@ -6,7 +6,7 @@
 /*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:33:16 by mwiacek           #+#    #+#             */
-/*   Updated: 2024/05/12 21:24:24 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/05/14 14:16:00 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	flood_fill(char **map, int height, int y, int x)
 
 	width = len_no_newline(map[0]);
 	if (y < 0 || y >= height || x < 0 || x >= width
-		|| map[y][x] == '1' || map[y][x] == 'V')
+		|| map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == 'X')
 	{
 		return ;
 	}

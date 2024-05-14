@@ -22,10 +22,14 @@ CC =	cc
 RM =	rm -rf
 
 # RULES #
-all:	$(NAME)
+all:	clone $(NAME)
+
+clone:
+	if [ ! -d "minilibx-linux" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git; \
+	fi
 
 $(NAME):	$(OBJ)
-	git clone https://github.com/42Paris/minilibx-linux.git
 	make -C app
 	make -C minilibx-linux
 	$(CC) $(OBJ) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
@@ -37,6 +41,7 @@ clean:
 
 fclean:	clean
 	$(RM) $(NAME)
+	rm -rf minilibx-linux
 
 re:	fclean all
 
