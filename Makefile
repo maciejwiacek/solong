@@ -1,48 +1,54 @@
-# PROJECT NAME #
-NAME =	so_long
+NAME = so_long
 
-# FILES #
-SRC =	src/main.c \
-			src/global_utils.c \
-			src/parse_map.c \
-			src/validate_map.c \
-			src/validate_map2.c \
-			src/validate_utils.c \
-			src/flood_fill.c \
-			src/start_game.c \
-			src/input_handling.c \
-			src/movement_handling.c \
-			src/struct_init.c \
-			src/render_utils.c
-MLX =	minilibx-linux
-OBJ =	$(SRC:.c=.o)
+SRCS = parse_map.c \
+	main.c \
+	validate_map/validate_map.c \
+	validate_map/check_borders.c \
+	validate_map/check_chars.c \
+	validate_map/check_collectibles.c \
+	validate_map/check_exit.c \
+	validate_map/check_if_rectangular.c \
+	validate_map/check_start.c \
+	validate_utils/len_without_newline.c \
+	validate_utils/error_handling.c \
+	validate_utils/map_height.c \
+	validate_utils/free_map.c \
+	validate_utils/map_width.c \
+	flood_fill.c \
+	close_game.c \
+	events.c \
+	fill_texture.c \
+	start_game.c \
 
-# COMMANDS #
-CC =	cc
-RM =	rm -rf
+MLX = minilibx-linux/
 
-# RULES #
-all:	clone $(NAME)
+OBJS = $(SRCS:.c=.o)
+
+CC = cc
+RM = rm -rf
+CFLAGS = -Wall -Wextra -Werror
+
+all: clone $(NAME)
 
 clone:
 	if [ ! -d "minilibx-linux" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux.git; \
 	fi
 
-$(NAME):	$(OBJ)
+$(NAME): $(OBJS)
 	make -C app
 	make -C minilibx-linux
-	$(CC) $(OBJ) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
+	$(CC) $(OBJS) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
 
 clean:
 	make clean -C app
 	make clean -C minilibx-linux
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
 
 fclean:	clean
 	$(RM) $(NAME)
 	rm -rf minilibx-linux
 
-re:	fclean all
+re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re

@@ -2,8 +2,7 @@
 NAME =			libftprintf.a
 
 # DIRS #
-SRC_DIR =		srcs
-HDR_DIR =		includes
+SRC_DIR =		app
 #OBJ_DIR =		objs
 LIBFT_DIR =		libft
 PRINTF_DIR =	printf
@@ -50,19 +49,18 @@ LIBFT_FLS =		$(LIBFT_DIR)/ft_atoi.c \
 					$(LIBFT_DIR)/ft_toupper.c
 
 PRINTF_FLS =	$(PRINTF_DIR)/ft_printf.c \
-					$(PRINTF_DIR)/ft_print_char.c \
-					$(PRINTF_DIR)/ft_print_hex.c \
-					$(PRINTF_DIR)/ft_print_int.c \
-					$(PRINTF_DIR)/ft_print_pointer.c \
-					$(PRINTF_DIR)/ft_print_str.c \
-					$(PRINTF_DIR)/ft_print_unsigned_int.c
+					$(PRINTF_DIR)/id_specifier.c \
+					$(PRINTF_DIR)/large_x_specifier.c \
+					$(PRINTF_DIR)/small_x_specifier.c \
+					$(PRINTF_DIR)/u_specifier.c \
+					$(PRINTF_DIR)/p_specifier.c \
+					$(PRINTF_DIR)/ft_putchar.c \
+					$(PRINTF_DIR)/ft_putstr.c \
 
-GNL_FLS =		$(GNL_DIR)/get_next_line.c
+GNL_FLS =		$(GNL_DIR)/get_next_line.c \
 
 # FILEPATHS #
-SRCS =			$(addprefix $(SRC_DIR)/,$(LIBFT_FLS)) \
-					$(addprefix $(SRC_DIR)/,$(PRINTF_FLS)) \
-					$(addprefix $(SRC_DIR)/,$(GNL_FLS))
+SRCS =			$(LIBFT_FLS) $(PRINTF_FLS) $(GNL_FLS)
 OBJS =			$(SRCS:.c=.o)
 
 # RULES #
