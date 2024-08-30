@@ -1,27 +1,27 @@
-NAME = so_long
+# PROJECT NAME #
+NAME =	so_long
 
-SRCS = parse_map.c \
-	main.c \
-	validate_map/validate_map.c \
-	validate_map/check_borders.c \
-	validate_map/check_chars.c \
-	validate_map/check_collectibles.c \
-	validate_map/check_exit.c \
-	validate_map/check_if_rectangular.c \
-	validate_map/check_start.c \
-	validate_utils/len_without_newline.c \
-	validate_utils/error_handling.c \
-	validate_utils/map_height.c \
-	validate_utils/free_map.c \
-	validate_utils/map_width.c \
-	flood_fill.c \
-	close_game.c \
-	events.c \
-	fill_texture.c \
-	start_game.c \
+# FILES #
+SRC =	src/main.c \
+			src/global_utils.c \
+			src/parse_map.c \
+			src/validate_map.c \
+			src/validate_map2.c \
+			src/validate_utils.c \
+			src/flood_fill.c \
+			src/start_game.c \
+			src/input_handling.c \
+			src/movement_handling.c \
+			src/struct_init.c \
+			src/render_utils.c
+MLX =	minilibx-linux
+OBJ =	$(SRC:.c=.o)
 
-MLX = minilibx-linux/
+# COMMANDS #
+CC =	cc
+RM =	rm -rf
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 OBJS = $(SRCS:.c=.o)
 
@@ -30,12 +30,17 @@ RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror
 
 all: clone $(NAME)
+=======
+# RULES #
+all:	clone $(NAME)
+>>>>>>> parent of a31a57b (TODO: memleaks + validation)
 
 clone:
 	if [ ! -d "minilibx-linux" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux.git; \
 	fi
 
+<<<<<<< HEAD
 $(NAME): $(OBJS)
 =======
 # RULES #
@@ -44,18 +49,21 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	git clone https://github.com/42Paris/minilibx-linux.git
 >>>>>>> parent of 96281b7 (TODO: Check everything and push)
+=======
+$(NAME):	$(OBJ)
+>>>>>>> parent of a31a57b (TODO: memleaks + validation)
 	make -C app
 	make -C minilibx-linux
-	$(CC) $(OBJS) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
+	$(CC) $(OBJ) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
 
 clean:
 	make clean -C app
 	make clean -C minilibx-linux
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean:	clean
 	$(RM) $(NAME)
 
-re: fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re
