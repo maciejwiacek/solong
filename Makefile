@@ -22,6 +22,7 @@ SRCS = parse_map.c \
 
 MLX = minilibx-linux/
 
+<<<<<<< HEAD
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
@@ -36,6 +37,13 @@ clone:
 	fi
 
 $(NAME): $(OBJS)
+=======
+# RULES #
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+	git clone https://github.com/42Paris/minilibx-linux.git
+>>>>>>> parent of 96281b7 (TODO: Check everything and push)
 	make -C app
 	make -C minilibx-linux
 	$(CC) $(OBJS) app/libftprintf.a -L$(MLX) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
@@ -47,7 +55,6 @@ clean:
 
 fclean:	clean
 	$(RM) $(NAME)
-	rm -rf minilibx-linux
 
 re: fclean all
 
